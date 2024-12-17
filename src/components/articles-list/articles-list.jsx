@@ -20,7 +20,6 @@ function ArticlesList() {
         setIsLoading(false);
       });
   }, []);
-  console.log(articles);
 
   if (isLoading) {
     return <p>Loading...</p>;

@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 function ArticleCard({
   id,
   image,
@@ -8,8 +10,14 @@ function ArticleCard({
   topic,
   votes,
 }) {
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    navigate(`/articles/${id}`);
+  };
+
   return (
-    <div className="card" key={id}>
+    <div className="card" key={id} onClick={handleCardClick}>
       {image && <img src={image} alt={`${title}`} className="article-image" />}
       <h1>{title}</h1>
     </div>
