@@ -7,22 +7,21 @@ import Footer from "./components/footer/Footer";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
-  const [items, setItems] = useState([]);
-  const { items_types } = useParams();
+  const [articles, setArticles] = useState([]);
 
   useEffect(() => {
-    getArticles(items_types).then((articlesFromApi) => {
-      setItems(articlesFromApi);
+    getArticles().then((articlesFromApi) => {
+      setArticles(articlesFromApi);
     });
-  }, [items_types]);
-  console.log("articleApi", items);
+  }, []);
+  console.log("articleApi", articles);
 
   return (
     <div>
       <Header />
       <main>
         <div className="articles-container">
-          {items.map((article) => (
+          {articles.map((article) => (
             <div key={article.article_id} className="article-card">
               <h2>{article.title}</h2>
               <p>By: {article.author}</p>
