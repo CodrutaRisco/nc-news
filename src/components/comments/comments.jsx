@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { getArticleComments, getArticleById } from "../../utils/api";
-
 import { useParams } from "react-router-dom";
 import "./comments.css";
 
@@ -8,27 +7,17 @@ function Comments() {
   const { article_id } = useParams();
   const [comments, setComments] = useState([]);
   const [article, setArticle] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setIsLoading(true);
     getArticleById(article_id).then((articleFromApi) => {
       setArticle(articleFromApi);
     });
-
-    getArticleComments(article_id)
-      .then((commentsFromApi) => {
-        setComments(commentsFromApi);
-      })
-      .catch((err) => {
-        console.error(err);
-        setIsLoading(false);
-      });
+    getArticleComments(article_id).then((commentsFromApi) => {
+      setComments(commentsFromApi);
+    });
   }, [article_id]);
-
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
+  console.log("comments>>>>", comments);
+  console.log("article>>>", article);
 
   return (
     <div className="comments-page">
@@ -36,6 +25,7 @@ function Comments() {
       <p>
         <strong>Author:</strong> {article.author}
       </p>
+      <p>{article.body}</p>
       <h3>Comments</h3>
       <ul className="comments-list">
         {comments.map((comment) => (
