@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import "./article-card.css";
+import { Link } from "react-router-dom";
 
 function ArticleCard(prams) {
   const { id, image, author, date, title, topic } = prams;
@@ -23,6 +24,9 @@ function ArticleCard(prams) {
           <div>
             <strong>{author}</strong> — {date}
           </div>
+          <Link to={`/articles/${id}`} className="comments">
+            Comments
+          </Link>
         </div>
       </div>
     </div>
