@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import "./article-card.css";
 
+
 function ArticleCard(prams) {
   const { id, image, author, date, title, topic } = prams;
   const navigate = useNavigate();

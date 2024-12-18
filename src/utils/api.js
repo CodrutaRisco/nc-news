@@ -21,3 +21,10 @@ export const getArticleById = (article_id) => {
     return data.article;
   });
 };
+
+export const getArticleComments = (article_id) => {
+  console.log(`Fetching comments for article ID: ${article_id}`);
+  return newApi.get(`/articles/${article_id}/comments`).then((response) => {
+    return response.data.comments;
+  });
+};
