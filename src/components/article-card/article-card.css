@@ -1,12 +1,54 @@
-.card {
-    width: 200px;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    background-color: white;
+.card-container {
     display: flex;
     flex-direction: column;
-    position: relative;
-    font-family: Arial, sans-serif;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0 0 0 0.1);
+    max-width: 100%;
+    margin: auto;
+    overflow: hidden;
   }
+
+  .image{
+    width: 100%;
+    height: auto;
+  }
+
+  .content {
+    padding: 16px;
+  }
+
+  .badgeContainer{
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .badge{
+    background-color: #d9730d;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+  }
+
+  title{
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0 0 12px 0;
+  }
+
+  .footer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #cec9c9;
+  }
+
+  .avatar{
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+  }
+

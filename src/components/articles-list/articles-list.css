@@ -1,0 +1,10 @@
+.list {
+     display: flex;
+    flex-direction: column;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 32px;
+    gap: 20px;
+    padding: 20px;
+    justify-items: center;
+    background-color: #f3f4f6; 
+}

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import "./header.css";
 
 function Header() {
   console.log("Header loaded");
@@ -12,7 +13,7 @@ function Header() {
         </div>
 
         <div className="nav-right">
-          <Link to="/basket" className="nav-link">
+          <Link to="/topics" className="nav-link">
             Topics
           </Link>
           <Link to="/login" className="nav-link login-button">
