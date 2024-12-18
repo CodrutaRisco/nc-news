@@ -21,7 +21,7 @@ function Comments() {
   console.log("article>>>", article);
 
   return (
-    <div className="comments-page">
+    <section className="comments-page">
       <div className="article-wrapper">
         <h2>{article.title}</h2>
         <p>
@@ -43,7 +43,7 @@ function Comments() {
           ))}
         </ul>
       </div>
-    </div>
+    </section>
   );
 }
 export default Comments;

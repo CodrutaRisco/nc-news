@@ -10,7 +10,7 @@ function CommentsCard(params) {
   };
 
   return (
-    <div key={id} className="card-container" onClick={handleCardClick}>
+    <article key={id} className="card-container" onClick={handleCardClick}>
       <div className="content">
         <p>{body}</p>
         <div>
@@ -19,7 +19,7 @@ function CommentsCard(params) {
           </div>
         </div>
       </div>
-    </div>
+    </article>
   );
 }
 
