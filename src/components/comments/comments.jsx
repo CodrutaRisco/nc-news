@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { getArticleComments, getArticleById } from "../../utils/api";
 import { useParams } from "react-router-dom";
+import CommentsCard from "../comments-card/comments-card";
 import "./comments.css";
 
 function Comments() {
@@ -21,23 +22,27 @@ function Comments() {
 
   return (
     <div className="comments-page">
-      <h2>{article.title}</h2>
-      <p>
-        <strong>Author:</strong> {article.author}
-      </p>
-      <p>{article.body}</p>
-      <h3>Comments</h3>
-      <ul className="comments-list">
-        {comments.map((comment) => (
-          <li key={comment.comment_id} className="comment-card">
-            <p>{comment.body}</p>
-            <p>
-              <strong>By:</strong> {comment.author} | <strong>Votes:</strong>{" "}
-              {comment.votes}
-            </p>
-          </li>
-        ))}
-      </ul>
+      <div className="article-wrapper">
+        <h2>{article.title}</h2>
+        <p>
+          <strong>Author:</strong> {article.author}
+        </p>
+        <p>{article.body}</p>
+      </div>
+      <div>
+        <h3 className="comment-title">Comments</h3>
+        <ul className="comments-list">
+          {comments.map((comment) => (
+            <CommentsCard
+              key={comment.comment_id}
+              id={comment.comment_id}
+              author={comment.author}
+              date={comment.created_at}
+              body={comment.body}
+            />
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

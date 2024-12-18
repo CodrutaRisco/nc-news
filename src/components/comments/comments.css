@@ -1,3 +1,26 @@
- /* .comments-list{
-    display:flex;
- } */
+.comments-page{
+display: flex;
+flex-direction: column;
+
+}
+
+.article-wrapper{
+   display: flex;
+   flex-direction: column;
+   margin-bottom: 24px;
+   gap:12px;
+}
+
+.comments-list{
+   display: flex;
+   flex-direction: column;
+   gap:12px;
+}
+
+.author{
+align-items: first baseline;
+}
+
+.comment-title{
+   margin-bottom: 12px;
+}
