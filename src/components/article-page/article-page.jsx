@@ -15,8 +15,8 @@ function ArticlePage() {
 
   return (
     <div className="wrapper">
-      <h1>ARTICLE PAGE</h1>
-      <h2>{article.title}</h2>
+      <h1>{article.title}</h1>
+      <img src={article.article_img_url} alt="hello" />
       <p>{article.body}</p>
     </div>
   );
