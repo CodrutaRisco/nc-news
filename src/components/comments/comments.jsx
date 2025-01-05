@@ -10,12 +10,22 @@ function Comments() {
   const [article, setArticle] = useState({});
 
   useEffect(() => {
-    getArticleById(article_id).then((articleFromApi) => {
-      setArticle(articleFromApi);
-    });
-    getArticleComments(article_id).then((commentsFromApi) => {
-      setComments(commentsFromApi);
-    });
+    getArticleById(article_id)
+      .then((articleFromApi) => {
+        setArticle(articleFromApi);
+      })
+
+      .catch((error) => {
+        console.error("Error fetching article:", error);
+      });
+
+    getArticleComments(article_id)
+      .then((commentsFromApi) => {
+        setComments(commentsFromApi);
+      })
+      .catch((error) => {
+        console.error("Error fetching comments:", error);
+      });
   }, [article_id]);
   console.log("comments>>>>", comments);
   console.log("article>>>", article);
@@ -39,6 +49,7 @@ function Comments() {
               author={comment.author}
               date={comment.created_at}
               body={comment.body}
+              article_id={article_id}
             />
           ))}
         </ul>

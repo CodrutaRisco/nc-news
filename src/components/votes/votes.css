@@ -1,0 +1,12 @@
+.votes button {
+    padding: 5px 10px;
+    margin: 0 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  .error {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  

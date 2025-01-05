@@ -1,3 +1,44 @@
 .wrapper{
     border:1px solid #8dc492;
+    padding: 16px;
+    margin: 16px;
 }
+
+.votes {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    justify-content: flex-end;
+}
+.votes button {
+    background-color: #007bff;;
+    color:blue;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 16px;
+ 
+
+  }
+  
+  .votes button:hover {
+    background-color: #ececc7;
+  }
+  
+  .error {
+    color: red;
+    margin-top: 10px;
+  }
+  .votes span {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+  }
+  .wrapper p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 8px 0;
+  }
+  
