@@ -2,15 +2,20 @@ import { useNavigate } from "react-router-dom";
 import "./comments-card.css";
 
 function CommentsCard(params) {
-  const { id, author, date, body } = params;
+  const { author, date, body, article_id } = params;
   const navigate = useNavigate();
 
   const handleCardClick = () => {
-    navigate(`/articles/${id}`);
+    navigate(`/articles/${article_id}`);
   };
 
   return (
-    <article key={id} className="card-container" onClick={handleCardClick}>
+    <article
+      className="card-container"
+      onClick={handleCardClick}
+      role="link"
+      tabIndex={0}
+    >
       <div className="content">
         <p>{body}</p>
         <div>

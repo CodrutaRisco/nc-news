@@ -2,8 +2,8 @@ import { useNavigate } from "react-router-dom";
 import "./article-card.css";
 
 
-function ArticleCard(prams) {
-  const { id, image, author, date, title, topic } = prams;
+function ArticleCard(params) {
+  const { id, image, author, date, title, topic } = params;
   const navigate = useNavigate();
 
   const handleCardClick = () => {
@@ -11,21 +11,13 @@ function ArticleCard(prams) {
   };
 
   return (
-    <div key={id} className="card-container" onClick={handleCardClick}>
-      {image && <img src={image} alt={title} className="image" />}
-      <div className="content">
-        <div className="badgeContainer">
-          <span key={topic} className="badge">
-            {topic}
-          </span>
-        </div>
-        <h2 className="title">{title}</h2>
-        <div className="footer">
-          <div>
-            <strong>{author}</strong> — {date}
-          </div>
-        </div>
-      </div>
+    <div className="article-card" onClick={handleCardClick}>
+      <img src={image} alt={title} />
+      <h3>{title}</h3>
+      <p>
+        {topic} by {author}
+      </p>
+      <p>{new Date(date).toLocaleDateString()}</p>
     </div>
   );
 }
