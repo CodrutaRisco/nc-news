@@ -7,8 +7,13 @@ const Votes = (params) => {
   const [error, setError] = useState(false);
 
   const giveVote = (inc_votes) => {
+    const newVoteTotal = vote + voteChange + inc_votes;
+
+    if (newVoteTotal < 0) return;
+
     setVoteChange((currChange) => currChange + inc_votes);
     setError(false);
+
     updateArticlesVotes(article_id, inc_votes).catch(() => {
       setVoteChange((currChange) => currChange - inc_votes);
       setError(true);
@@ -18,7 +23,9 @@ const Votes = (params) => {
   return (
     <div>
       <button onClick={() => giveVote(1)}>👍 Upvote</button>
-      <button onClick={() => giveVote(-1)}>👎 Downvote</button>
+      <button onClick={() => giveVote(-1)} disabled={vote + voteChange <= 0}>
+        👎 Downvote
+      </button>
       <p>Votes: {vote + voteChange}</p>
       {error && (
         <p className="error">Failed to update vote. Please try again.</p>
