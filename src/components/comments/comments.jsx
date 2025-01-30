@@ -8,9 +8,6 @@ function Comments() {
   const { article_id } = useParams();
   const [comments, setComments] = useState([]);
   const [article, setArticle] = useState({});
-  const [newComment, setNewComment] = useState("");
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     getArticleById(article_id)

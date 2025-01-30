@@ -5,3 +5,14 @@
   text-align: center;
 } 
 
+.nav-bar{
+  list-style: none;
+  display: inline-flex;
+  text-align: center;
+  padding: 20px 5% ;
+  background-color: hsla(53, 100%, 65%, 0.293) ;
+}
+
+.nav-bar:hover{
+  color: white;
+}
