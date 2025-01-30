@@ -4,23 +4,18 @@ import "./header.css";
 function Header() {
   console.log("Header loaded");
   return (
-    <nav className="navBar">
-      <div className="nav-container">
-        <div className="nav-left">
-          <Link to="/" className="nav-link">
-            Logo
-          </Link>
-        </div>
-
-        <div className="nav-right">
-          <Link to="/topics" className="nav-link">
-            Topics
-          </Link>
-          <Link to="/login" className="nav-link login-button">
-            Login
-          </Link>
-        </div>
-      </div>
+    <nav>
+      <ul>
+        <li className="nav-bar">
+          <Link to="/">Home</Link>
+        </li>
+        <li className="nav-bar">
+          <Link to="/articles">All Articles</Link>
+        </li>
+        <li className="nav-bar">
+          <Link to="/topics">Topics</Link>
+        </li>
+      </ul>
     </nav>
   );
 }
