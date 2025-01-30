@@ -44,3 +44,11 @@ export const updateArticlesVotes = (article_id, inc_votes) => {
       return data.article;
     });
 };
+export const postComment = (article_id, body) => {
+  return newApi
+    .post(`/articles/${article_id}/comments`, body)
+    .then(({ data }) => {
+      console.log("data comment", data);
+      return data;
+    });
+};
