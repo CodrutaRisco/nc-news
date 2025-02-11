@@ -13,7 +13,7 @@ function Header() {
           <Link to="/articles">All Articles</Link>
         </li>
         <li className="nav-bar">
-          <Link to="/topics">Topics</Link>
+          <Link to="/profile">Profile</Link>
         </li>
       </ul>
     </nav>

@@ -12,8 +12,7 @@
   }
   
   .navBar {
-   
-    border-bottom: 2px solid #3f683f; 
+   border-bottom: 2px solid #3f683f; 
     display: flex;
     justify-content: center;
     padding: 10px 20px; 
@@ -30,7 +29,7 @@
     max-width: 1200px; 
   }
 
-  /* .nav-left {
+  .nav-left {
     display: flex;
     gap: 20px; 
   }
@@ -51,7 +50,7 @@
     align-items: center;
     gap: 15px; 
   }
-   */
+  
 
   
   

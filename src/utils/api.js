@@ -4,11 +4,11 @@ const newApi = axios.create({
   baseURL: "https://my-nc-news-pemi.onrender.com/api",
 });
 
-export const getArticles = (articles_types) => {
+export const getArticles = (topic, sort_by, order_by) => {
   return newApi
     .get("/articles", {
       params: {
-        type: articles_types,
+        type: { topic, sort_by, order_by },
       },
     })
     .then(({ data }) => {
@@ -29,12 +29,11 @@ export const getArticleComments = (article_id) => {
   });
 };
 
-export const updateCommentsVotes = (comments_id, inc_votes) => {
-  return newApi
-    .patch(`/comments/${comments_id}`, { inc_votes })
-    .then(({ data }) => {
-      return data.comments;
-    });
+export const updateCommentsVotes = async (comments_id, inc_votes) => {
+  const { data } = await newApi.patch(`/comments/${comments_id}`, {
+    inc_votes,
+  });
+  return data.comments;
 };
 
 export const updateArticlesVotes = (article_id, inc_votes) => {
@@ -44,11 +43,21 @@ export const updateArticlesVotes = (article_id, inc_votes) => {
       return data.article;
     });
 };
+export const getTopics = () => {
+  return newApi.get(`/topics`).then((data) => {
+    return data.topic;
+  });
+};
 export const postComment = (article_id, body) => {
   return newApi
     .post(`/articles/${article_id}/comments`, body)
     .then(({ data }) => {
       console.log("data comment", data);
-      return data;
+      return data.comments;
     });
+};
+export const getUsers = () => {
+  return newApi.get("/users").then((response) => {
+    return response.data;
+  });
 };

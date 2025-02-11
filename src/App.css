@@ -14,5 +14,9 @@
 }
 
 .nav-bar:hover{
-  color: white;
+  color: hsl(188, 47%, 40%);
+}
+.trending-topics{
+  list-style: none;
+  display: inline-flex;
 }
