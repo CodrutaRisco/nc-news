@@ -32,6 +32,12 @@ function Comments() {
 
   return (
     <section className="comments-page">
+      <a href="#" className="previous">
+        &laquo; Previous
+      </a>
+      <a href="#" className="next">
+        Next &raquo;
+      </a>
       <div className="article-wrapper">
         <h2>{article.title}</h2>
         <p>
