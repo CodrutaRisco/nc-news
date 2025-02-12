@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { getArticleComments, getArticleById } from "../../utils/api";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import CommentsCard from "../comments-card/comments-card";
 import "./comments.css";
 
@@ -32,12 +32,6 @@ function Comments() {
 
   return (
     <section className="comments-page">
-      <a href="#" className="previous">
-        &laquo; Previous
-      </a>
-      <a href="#" className="next">
-        Next &raquo;
-      </a>
       <div className="article-wrapper">
         <h2>{article.title}</h2>
         <p>

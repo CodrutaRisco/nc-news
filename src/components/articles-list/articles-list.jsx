@@ -5,6 +5,7 @@ import "./articles-list.css";
 import { useSearchParams } from "react-router";
 import { SearchByTopic } from "../topics/SearchByTopic";
 
+
 // eslint-disable-next-line react/prop-types
 function ArticlesList({ loadingLottie }) {
   const [articles, setArticles] = useState([]);
@@ -27,7 +28,7 @@ function ArticlesList({ loadingLottie }) {
         setIsError("Failed to load articles: " + error.message);
         setIsLoading(false);
       });
-  }, [order_by, searchParams, sort_by, topic]);
+  }, [topic, sort_by, order_by]);
 
   if (isLoading) {
     return (
@@ -53,13 +54,21 @@ function ArticlesList({ loadingLottie }) {
   const handleSortByChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-    setSearchParams({ ...Object.fromEntries(searchParams), [name]: value });
+    setSearchParams((prev) => {
+      const params = new URLSearchParams(prev); // Ensure it's iterable
+      params.set(name, value);
+      return params;
+    });
   };
 
   const handleOrderChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-    setSearchParams({ ...Object.fromEntries(searchParams), [name]: value });
+    setSearchParams((prev) => {
+      const params = new URLSearchParams(prev); // Ensure it's iterable
+      params.set(name, value);
+      return params;
+    });
   };
 
   return (

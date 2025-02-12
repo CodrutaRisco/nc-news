@@ -4,36 +4,42 @@ const newApi = axios.create({
   baseURL: "https://my-nc-news-pemi.onrender.com/api",
 });
 
-export const getArticles = (topic, sort_by, order_by) => {
+
+export const getArticles = (
+  topic = "slug",
+  sort_by = "created_at",
+  order = "DESC"
+) => {
   return newApi
     .get("/articles", {
-      params: {
-        type: { topic, sort_by, order_by },
-      },
+      params: { topic, sort_by, order },
     })
     .then(({ data }) => {
       return data.articles;
-    });
+    })
+    .catch((err) => console.error("API error:", err));
 };
 
 export const getArticleById = (article_id) => {
-  return newApi.get(`/articles/${article_id}`).then(({ data }) => {
-    return data.article;
+  return newApi.get(`/articles/${article_id}`).then((response) => {
+    return response.data.article;
   });
 };
 
 export const getArticleComments = (article_id) => {
-  console.log(`Fetching comments for article ID: ${article_id}`);
-  return newApi.get(`/articles/${article_id}/comments`).then((response) => {
-    return response.data.comments;
+  return newApi.get(`/articles/${article_id}/comments`).then(({ data }) => {
+    return data.comments;
   });
 };
 
-export const updateCommentsVotes = async (comments_id, inc_votes) => {
-  const { data } = await newApi.patch(`/comments/${comments_id}`, {
-    inc_votes,
-  });
-  return data.comments;
+export const updateCommentsVotes = (comments_id, inc_votes) => {
+  return newApi
+    .patch(`/comments/${comments_id}`, {
+      inc_votes,
+    })
+    .then(({ data }) => {
+      return data.comments;
+    });
 };
 
 export const updateArticlesVotes = (article_id, inc_votes) => {
@@ -48,6 +54,7 @@ export const getTopics = () => {
     return data.topic;
   });
 };
+
 export const postComment = (article_id, body) => {
   return newApi
     .post(`/articles/${article_id}/comments`, body)
