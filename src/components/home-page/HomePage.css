@@ -1,7 +1,27 @@
-#root {
-    max-width: 90%;
-    max-height: 80%;
-    margin: 0 auto;
-    padding: 0;
+
+  #welcome {
     text-align: center;
+    font-size: 2.5rem;
+    color: #333;
+    margin-top: 50px;
+    animation: fadeIn 1.5s ease-in-out;
+  }
+  
+  
+  .home-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to right, #f8c291, #6a89cc);
+    color: white;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }

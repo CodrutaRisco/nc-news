@@ -7,9 +7,10 @@ import ArticlePage from "./components/article-page/article-page";
 import Comments from "./components/comments/comments";
 import Home from "./components/home-page/HomePage";
 import { Profile } from "./components/profile/Profile";
-import Lottie from "react-lottie";
+import Lottie from "react-lottie-player";
 import { useEffect, useState } from "react";
 import { SearchByTopic } from "./components/topics/SearchByTopic";
+import TopicPage from "./components/topics/TopicPage";
 
 function App() {
   const [animationData, setAnimationData] = useState(null);
@@ -43,6 +44,7 @@ function App() {
         <Route path="/articles/:article_id/comments" element={<Comments />} />
         <Route path="/search" element={<SearchByTopic />} />
         <Route path="/search/:topic" element={<SearchByTopic />} />
+        <Route path="/topics/:slug" element={<TopicPage />} />
         <Route
           path="/profile"
           element={<Profile loadingLottie={loadingLottie} />}
