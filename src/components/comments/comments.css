@@ -59,11 +59,10 @@ a {
    border: 2px solid rgb(255, 198, 91);
    color: white;
  }
- 
- .postcomment-error-msg{
+.error-msg{
    color: red;
    font-weight: bold;
- }
+ } 
  .comment-form {
   margin-top: 20px;
   display: flex;
@@ -80,7 +79,7 @@ a {
   box-sizing: border-box;
 }
 
-.comment-form button {
+.submit-button {
   align-self: flex-start;
   padding: 8px 12px;
   font-size: 1rem;

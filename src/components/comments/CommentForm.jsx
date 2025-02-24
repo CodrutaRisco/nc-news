@@ -3,7 +3,7 @@ import { postComment } from "../../utils/api";
 import "./comments.css";
 
 // eslint-disable-next-line react/prop-types
-export const CommentForm = ({ article_id }) => {
+export const CommentForm = ({ article_id, onCommentAdded }) => {
   const [body, setBody] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
@@ -15,16 +15,27 @@ export const CommentForm = ({ article_id }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    if (!body) {
+      setError("Comment field is required.");
+      return;
+    }
     setIsSubmitting(true);
     setError(null);
     setSuccessMessage("");
 
     try {
-      const response = await postComment({ article_id, body });
+      const response = await postComment(article_id, {
+        username: "cooljmessy",
 
-      if (response.status === 201) {
+        body,
+      });
+      console.log("New comment added:", response);
+
+      if (response && response.comment) {
         setSuccessMessage("Comment posted successfully!");
         setBody("");
+        onCommentAdded(response.data.comment);
       }
       // eslint-disable-next-line no-unused-vars
     } catch (err) {
@@ -38,13 +49,13 @@ export const CommentForm = ({ article_id }) => {
     <div className="comment-form">
       <h3>Add a Comment</h3>
       <form onSubmit={handleSubmit}>
-        <textarea
+        <input
           className="comment-input"
           placeholder="Write your comment here..."
           value={body}
           onChange={handleInputChange}
           required
-        ></textarea>
+        />
         <button type="submit" className="submit-button" disabled={isSubmitting}>
           {isSubmitting ? "Submitting..." : "Submit"}
         </button>

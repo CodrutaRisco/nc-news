@@ -27,8 +27,11 @@ function Comments() {
         console.error("Error fetching comments:", error);
       });
   }, [article_id]);
-  console.log("comments>>>>", comments);
-  console.log("article>>>", article);
+  const handleCommentDeleted = (deletedCommentId) => {
+    setComments((prevComments) =>
+      prevComments.filter((comment) => comment.comment_id !== deletedCommentId)
+    );
+  };
 
   return (
     <section className="comments-page">
@@ -45,11 +48,13 @@ function Comments() {
           {comments.map((comment) => (
             <CommentsCard
               key={comment.comment_id}
+              {...comment}
+              onCommentDeleted={handleCommentDeleted}
               id={comment.comment_id}
               author={comment.author}
               date={comment.created_at}
               body={comment.body}
-              article_id={article_id}
+              article_id={comment.article_id}
             />
           ))}
         </ul>

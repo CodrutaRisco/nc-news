@@ -7,7 +7,7 @@ const newApi = axios.create({
 
 export const getArticles = (
   topic = "slug",
-  sort_by = "created_at",
+  sort_by = "comment_count",
   order = "DESC"
 ) => {
   return newApi
@@ -56,13 +56,16 @@ export const getTopics = () => {
 };
 
 export const postComment = (article_id, body) => {
-  return newApi
-    .post(`/articles/${article_id}/comments`, body)
-    .then(({ data }) => {
-      console.log("data comment", data);
-      return data.comments;
-    });
+  return newApi.post(`/articles/${article_id}/comments`, body).then((data) => {
+    console.log("data comment", data);
+    return data.comment;
+  });
 };
+
+export const deleteCommentById = (comment_id) => {
+  return newApi.delete(`/comments/${comment_id}`);
+};
+
 export const getUsers = () => {
   return newApi.get("/users").then((response) => {
     return response.data;

@@ -1,28 +1,41 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getArticleById } from "../../utils/api";
+import {
+  getArticleById,
+  getArticleComments,
+  deleteCommentById,
+} from "../../utils/api";
 import { Link } from "react-router-dom";
 import "./article-page.css";
 import Votes from "../votes/votes";
+import { CommentForm } from "../comments/CommentForm";
 
 function ArticlePage() {
   const { article_id } = useParams();
   const [article, setArticle] = useState({});
+  const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    getArticleById(article_id)
-      .then((articleFromApi) => {
+    const fetchData = async () => {
+      try {
+        const articleFromApi = await getArticleById(article_id);
+        const commentsFromApi = await getArticleComments(article_id);
         setArticle(articleFromApi);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Error fetching article:", err);
+        setComments(commentsFromApi);
+        // eslint-disable-next-line no-unused-vars
+      } catch (err) {
         setError("Failed to load article. Please try again.");
+      } finally {
         setLoading(false);
-      });
+      }
+    };
+    fetchData();
   }, [article_id]);
+  const handleNewComment = (newComment) => {
+    setComments((prev) => [newComment, ...prev]);
+  };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -42,11 +55,15 @@ function ArticlePage() {
         </p>
         <p>{article.body}</p>
         <p>
-          <strong>Comments:</strong> {article.comments_count}
+          <strong>Comments:</strong> {comments.length}
         </p>
         <div className="votes">
           <Votes vote={article.votes} article_id={article_id} />
         </div>
+        <CommentForm
+          article_id={article_id}
+          onCommentAdded={handleNewComment}
+        />
       </div>
       <Link to={`/articles/${article_id}/comments`} className="comments">
         View Comments
