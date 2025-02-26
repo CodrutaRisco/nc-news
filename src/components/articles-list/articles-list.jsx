@@ -13,14 +13,17 @@ function ArticlesList({ loadingLottie }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const topic = searchParams.get("topic") || "";
   const sort_by = searchParams.get("sort_by") || "created_at";
-  const order_by = searchParams.get("order_by") || "DESC";
+  const order = searchParams.get("order") || "DESC";
   const [isError, setIsError] = useState(null);
 
   useEffect(() => {
+    console.log("Fetching articles with sort_by:", sort_by, order);
     setIsLoading(true);
     setIsError(null);
-    getArticles(topic, sort_by, order_by)
+
+    getArticles(topic, sort_by, order)
       .then((articlesFromApi) => {
+        console.log("Received articles:", articlesFromApi);
         setArticles(Array.isArray(articlesFromApi) ? articlesFromApi : []);
         setIsLoading(false);
       })
@@ -28,7 +31,7 @@ function ArticlesList({ loadingLottie }) {
         setIsError("Failed to load articles: " + error.message);
         setIsLoading(false);
       });
-  }, [topic, sort_by, order_by]);
+  }, [topic, sort_by, order]);
 
   if (isLoading) {
     return (
@@ -38,6 +41,12 @@ function ArticlesList({ loadingLottie }) {
       </>
     );
   }
+  const sortedArticles = [...articles];
+
+  if (sort_by === "comment_count") {
+    sortedArticles.sort((a, b) => b.comment_count - a.comment_count);
+  }
+
   const handleBackButton = () => {
     setSearchParams({});
     setIsError(null);
@@ -88,14 +97,14 @@ function ArticlesList({ loadingLottie }) {
       >
         <option disabled>Sort By</option>
         <option value="created_at">Date</option>
-        <option value="comment_count">Comment Count NOT WORKING</option>
+        <option value="comment_count">Comment Count</option>
         <option value="votes">Votes</option>
       </select>
       <select
         id="order-dropdown"
         onChange={handleOrderChange}
-        name="order_by"
-        value={order_by}
+        name="order"
+        value={order}
       >
         <option disabled>Order</option>
         <option value="DESC"> Desc</option>
@@ -106,17 +115,22 @@ function ArticlesList({ loadingLottie }) {
       )}
 
       <div className="list">
-        {articles.map((article) => (
-          <ArticleCard
-            key={article.article_id}
-            id={article.article_id}
-            image={article.article_img_url}
-            author={article.author}
-            date={article.created_at}
-            title={article.title}
-            topic={article.topic}
-          />
-        ))}
+        {sortedArticles.length > 0 ? (
+          sortedArticles.map((article) => (
+            <ArticleCard
+              key={article.article_id}
+              article={article}
+              id={article.article_id}
+              image={article.article_img_url}
+              author={article.author}
+              date={article.created_at}
+              title={article.title}
+              topic={article.topic}
+            />
+          ))
+        ) : (
+          <p>No articles found for this topic.</p>
+        )}
       </div>
     </>
   );

@@ -3,7 +3,7 @@ import "./article-card.css";
 
 
 function ArticleCard(params) {
-  const { id, image, author, date, title, topic } = params;
+  const { id, image, author, date, title, topic, votes } = params;
   const navigate = useNavigate();
 
   const handleCardClick = () => {
@@ -17,6 +17,7 @@ function ArticleCard(params) {
       <p>
         {topic} by {author}
       </p>
+      <p>Votes: {votes}</p>
       <p>{new Date(date).toLocaleDateString()}</p>
     </div>
   );

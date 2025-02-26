@@ -11,7 +11,7 @@ function CommentsCard(params) {
     event.stopPropagation();
 
     try {
-      console.log("🗑️ Deleting comment with ID:", comment_id);
+      console.log("🗑️ Attempting to delete comment:", comment_id);
       await deleteCommentById(comment_id);
 
       onCommentDeleted(comment_id);
