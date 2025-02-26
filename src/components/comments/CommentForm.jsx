@@ -30,7 +30,6 @@ export const CommentForm = ({ article_id, onCommentAdded }) => {
 
         body,
       });
-      console.log("New comment added:", response);
 
       if (response && response.comment) {
         setSuccessMessage("Comment posted successfully!");

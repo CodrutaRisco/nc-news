@@ -50,7 +50,7 @@ export const updateArticlesVotes = (article_id, inc_votes) => {
     });
 };
 export const getTopics = () => {
-  return newApi.get(`/topics`).then((data) => {
+  return newApi.get(`/topics`).then(({ data }) => {
     return data.topic;
   });
 };

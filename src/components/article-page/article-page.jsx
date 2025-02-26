@@ -1,10 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import {
-  getArticleById,
-  getArticleComments,
-  deleteCommentById,
-} from "../../utils/api";
+import { getArticleById, getArticleComments } from "../../utils/api";
 import { Link } from "react-router-dom";
 import "./article-page.css";
 import Votes from "../votes/votes";
@@ -12,7 +8,7 @@ import { CommentForm } from "../comments/CommentForm";
 
 function ArticlePage() {
   const { article_id } = useParams();
-  const [article, setArticle] = useState({});
+  const [article, setArticle] = useState({ votes: 0 });
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -33,8 +29,12 @@ function ArticlePage() {
     };
     fetchData();
   }, [article_id]);
+
   const handleNewComment = (newComment) => {
     setComments((prev) => [newComment, ...prev]);
+  };
+  const handleVoteChange = (inc_votes) => {
+    setArticle((prev) => ({ ...prev, votes: prev.votes + inc_votes }));
   };
 
   if (loading) {
@@ -58,16 +58,20 @@ function ArticlePage() {
           <strong>Comments:</strong> {comments.length}
         </p>
         <div className="votes">
-          <Votes vote={article.votes} article_id={article_id} />
+          <Votes
+            vote={article.votes}
+            article_id={article_id}
+            onVoteChange={handleVoteChange}
+          />
         </div>
         <CommentForm
           article_id={article_id}
           onCommentAdded={handleNewComment}
         />
+        <Link to={`/articles/${article_id}/comments`} className="comments">
+          View Comments
+        </Link>
       </div>
-      <Link to={`/articles/${article_id}/comments`} className="comments">
-        View Comments
-      </Link>
     </>
   );
 }

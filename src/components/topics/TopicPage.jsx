@@ -4,13 +4,11 @@ import { getArticles } from "../../utils/api";
 import ArticleCard from "../article-card/article-card/";
 
 const TopicPage = () => {
-  const { slug } = useParams(); // Get the topic slug from the URL
+  const { slug } = useParams();
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
-
-  // Extract sorting options from the URL or set defaults
   const sortBy = searchParams.get("sort_by") || "created_at";
   const order = searchParams.get("order") || "desc";
 
@@ -21,10 +19,9 @@ const TopicPage = () => {
 
       try {
         const articleFromApi = await getArticles(slug, sortBy, order);
-        // const topicArticles = response.articles.filter(
-        //   (article) => article.topic === slug // Filter by the topic slug
-        // );
+
         setArticles(articleFromApi);
+        // eslint-disable-next-line no-unused-vars
       } catch (error) {
         setError("Failed to load articles. Please try again later.");
       } finally {
@@ -33,15 +30,18 @@ const TopicPage = () => {
     };
 
     getArticlesByTopic();
-  }, [slug, sortBy, order]); // Fetch articles whenever the topic or sorting changes
+  }, [slug, sortBy, order]);
 
-  // Handle sorting option change
   const handleSortByChange = (event) => {
     const newSortBy = event.target.value;
-    setSearchParams({ sort_by: newSortBy, order }); // Update URL params
+    setSearchParams((prev) => {
+      const params = new URLSearchParams(prev);
+      params.set("sort_by", newSortBy);
+      params.set("order", order);
+      return params;
+    });
   };
 
-  // Handle order change
   const handleOrderChange = () => {
     const newOrder = order === "desc" ? "asc" : "desc";
     setSearchParams({ sort_by: sortBy, order: newOrder }); // Update URL params
