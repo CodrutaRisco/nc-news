@@ -23,7 +23,7 @@ function ArticlesList({ loadingLottie }) {
 
     getArticles(topic, sort_by, order)
       .then((articlesFromApi) => {
-        console.log("Received articles:", articlesFromApi);
+        // console.log("Received articles:", articlesFromApi);
         setArticles(Array.isArray(articlesFromApi) ? articlesFromApi : []);
         setIsLoading(false);
       })
