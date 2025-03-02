@@ -47,31 +47,37 @@ function ArticlePage() {
 
   return (
     <>
-      <div className="wrapper">
-        <h1>{article.title}</h1>
-        <img src={article.article_img_url} alt={article.title} />
-        <p>
-          <strong>Author:</strong> {article.author}
-        </p>
-        <p>{article.body}</p>
-        <p>
-          <strong>Comments:</strong> {comments.length}
-        </p>
-        <div className="votes">
-          <Votes
-            vote={article.votes}
+      <section className="wrapper">
+        <div className="inner">
+          <div className="iagContainer">
+            <img src={article.article_img_url} alt={article.title} />
+          </div>
+          <hr aria-orientation="horizontal" className="divider"></hr>
+          <div className="articleContent">
+            <p className="tagText">Topic: {article.topic}</p>
+            <h1>{article.title}</h1>
+            <p>
+              <strong>Author:</strong> {article.author}
+            </p>
+            <p>{article.body}</p>
+          </div>
+          <div className="articleCommentsAndVotes">
+            <Link className="comments" to={`/articles/${article_id}/comments`}>
+              Comments: {comments.length}
+            </Link>
+
+            <Votes
+              vote={article.votes}
+              article_id={article_id}
+              onVoteChange={handleVoteChange}
+            />
+          </div>
+          <CommentForm
             article_id={article_id}
-            onVoteChange={handleVoteChange}
+            onCommentAdded={handleNewComment}
           />
         </div>
-        <CommentForm
-          article_id={article_id}
-          onCommentAdded={handleNewComment}
-        />
-        <Link to={`/articles/${article_id}/comments`} className="comments">
-          View Comments
-        </Link>
-      </div>
+      </section>
     </>
   );
 }
