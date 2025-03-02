@@ -27,22 +27,25 @@ function Comments() {
         console.error("Error fetching comments:", error);
       });
   }, [article_id]);
-  const handleCommentDeleted = (deletedCommentId) => {
+
+  const handleCommentDeleted = (comment_id) => {
     setComments((prevComments) =>
-      prevComments.filter((comment) => comment.comment_id !== deletedCommentId)
+      prevComments.filter((comment) => comment.comment_id !== comment_id)
     );
   };
 
   return (
     <section className="comments-page">
       <div className="article-wrapper">
-        <h2>{article.title}</h2>
+        <Link className="title" to={`/articles/${article_id}`}>
+          <h2> {article.title}</h2>
+        </Link>
         <p>
           <strong>Author:</strong> {article.author}
         </p>
-        <p>{article.body}</p>
+        <p className="text">{article.body}</p>
       </div>
-      <div>
+      <div className="comments-wrapper">
         <h3 className="comment-title">Comments</h3>
         <ul className="comments-list">
           {comments.map((comment) => (

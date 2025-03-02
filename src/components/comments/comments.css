@@ -1,7 +1,12 @@
 .comments-page{
 display: flex;
 flex-direction: column;
-
+max-width: 700px;
+   margin: 0 auto;
+   align-items: center;
+   padding: 2rem 0;
+   line-height: 1.5rem;
+   text-align: left; 
 }
 
 .article-wrapper{
@@ -9,9 +14,42 @@ flex-direction: column;
    flex-direction: column;
    margin-bottom: 24px;
    gap:12px;
+   align-items: flex-start;
+}
+
+.article-wrapper a {
+   text-decoration: none;
+   display: inline-block;
+   color:  black;
+   font-size: 1.2rem;
+   font-weight: 700;
+   line-height: 2.5rem;
+   padding: 0;
+}
+
+.article-wrapper a:hover {
+   text-decoration: underline;
+   color: #38A169;
+   background-color: transparent;
 }
 
 
+.comments-wrapper{
+   display: flex;
+   flex-direction: column;
+   gap: 1rem;
+   width: 100%;
+}
+.comment-title{
+   margin-bottom: 1rem;
+}
+
+.comments-list{
+   display: flex;
+   flex-direction: column;
+   gap:1rem;
+
+}
  
  
  
