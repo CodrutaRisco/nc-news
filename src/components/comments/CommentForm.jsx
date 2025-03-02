@@ -25,7 +25,7 @@ export const CommentForm = ({ article_id, onCommentAdded }) => {
         onCommentAdded(newComment);
       }
     } catch (err) {
-      console.error("Eroare la trimiterea comentariului:", err);
+      console.error("Error to post comment:", err);
     } finally {
       setIsSubmitting(false);
     }
