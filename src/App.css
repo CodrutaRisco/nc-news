@@ -20,31 +20,3 @@
   list-style: none;
   display: inline-flex;
 }
-/* .write-comment-form{
-  display: block;
-}
-
-input[type=text]{
-  padding: 12px 30px;
-  margin: 10px;
-  box-sizing: border-box;
-  border-radius: 5px;
-}
-
-input[type=text]:hover{
-  border: 2px solid rgb(255, 197, 91);
-}
-
-#submit-button{
-  background-color: rgb(255, 197, 91) ;
-}
-
-#submit-button:hover{
-  border: 2px solid rgb(255, 198, 91);
-  color: white;
-}
-
-.postcomment-error-msg{
-  color: red;
-  font-weight: bold;
-} */
