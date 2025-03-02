@@ -57,7 +57,7 @@ export const getTopics = () => {
 
 export const postComment = (article_id, body) => {
   return newApi.post(`/articles/${article_id}/comments`, body).then((data) => {
-    console.log("data comment", data);
+    console.log("datacomment---->>>", data.comment.comment);
     return data.comment;
   });
 };

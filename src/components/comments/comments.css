@@ -11,86 +11,9 @@ flex-direction: column;
    gap:12px;
 }
 
-.comments-list{
-   display: flex;
-   flex-direction: column;
-   gap:12px;
-}
 
-.author{
-align-items: first baseline;
-}
+ 
+ 
+ 
+ 
 
-.comment-title{
-   margin-bottom: 12px;
-}
-
-a {
-   text-decoration: none;
-   display: inline-block;
-   padding: 8px 16px;
- }
- 
- a:hover {
-   background-color: #ddd;
-   color: black;
- }
- 
- .write-comment-form{
-   display: block;
- }
- 
- input[type=text]{
-   padding: 12px 30px;
-   margin: 10px;
-   box-sizing: border-box;
-   border-radius: 5px;
- }
- 
- input[type=text]:hover{
-   border: 2px solid rgb(255, 197, 91);
- }
- 
- #submit-button{
-   background-color: rgb(255, 197, 91) ;
- }
- 
- #submit-button:hover{
-   border: 2px solid rgb(255, 198, 91);
-   color: white;
- }
-.error-msg{
-   color: red;
-   font-weight: bold;
- } 
- .comment-form {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-}
-
-.comment-input {
-  width: 100%;
-  padding: 0.75rem;
-  margin-bottom: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 1rem;
-  box-sizing: border-box;
-}
-
-.submit-button {
-  align-self: flex-start;
-  padding: 8px 12px;
-  font-size: 1rem;
-  color: #fff;
-  background-color: #007bff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.comment-form button:hover {
-  background-color: #0056b3;
-}
