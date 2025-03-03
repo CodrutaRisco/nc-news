@@ -20,10 +20,10 @@ const Votes = (params) => {
     <div className="votes">
       <p>Votes: {vote}</p>
       <button className="vote-button" onClick={() => giveVote(1)}>
-        👎
+        👍
       </button>
       <button className="vote-button" onClick={() => giveVote(-1)}>
-        👍
+        👎
       </button>
     </div>
   );

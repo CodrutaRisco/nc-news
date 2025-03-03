@@ -1,0 +1,78 @@
+.navbar {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%; 
+    background-color: #f0fdf4;
+    display: flex;
+    padding: 15px 20px;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    z-index: 1000; 
+  }
+  
+  .nav-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 1024px;
+    justify-content: space-between;
+  }
+  
+  .menu-icon {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    display: none;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .nav-button {
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 5px 10px;
+    transition: 0.3s;
+  }
+  
+  .nav-button:hover {
+    background-color: #d1fae5;
+    border-radius: 5px;
+  }
+  
+  /* Responsivitate pentru mobil */
+  @media (max-width: 768px) {
+    .menu-icon {
+      display: block;
+    }
+  
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+      text-align: center;
+      padding: 10px 0;
+    }
+  
+    .nav-links.active {
+      display: flex;
+    }
+  }
+  
+  .profile-icon {
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .profile-icon:hover {
+    transform: scale(1.1);
+  }
