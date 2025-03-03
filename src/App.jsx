@@ -1,19 +1,22 @@
 import "./App.css";
-import Header from "./components/header/Header";
+// import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import { Routes, Route } from "react-router-dom";
 import ArticlesList from "./components/articles-list/articles-list";
 import ArticlePage from "./components/article-page/article-page";
 import Comments from "./components/comments/comments";
-import Home from "./components/home-page/HomePage";
+// import Home from "./components/home-page/HomePage";
 import { Profile } from "./components/profile/Profile";
 import Lottie from "react-lottie-player";
 import { useEffect, useState } from "react";
-import { SearchByTopic } from "./components/topics/SearchByTopic";
-import TopicPage from "./components/topics/TopicPage";
+// import { SearchByTopic } from "./components/topics/SearchByTopic";
+// import TopicPage from "./components/topics/TopicPage";
+import Nav from "./components/nav-bar/nav-bar"
 
 function App() {
   const [animationData, setAnimationData] = useState(null);
+  const [topic, setTopic] = useState("");
+
   useEffect(() => {
     import("./lotties/lottie.json")
       .then((data) => setAnimationData(data.default))
@@ -36,15 +39,17 @@ function App() {
   );
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
+      <Nav setTopic={setTopic}></Nav>
       <Routes>
-        <Route path="/" element={<Home />} />
+        {/* <Route path="/" element={<Home />} /> */}
+        <Route path="/" element={<ArticlesList topic={topic} />} />
         <Route path="/articles" element={<ArticlesList />} />
         <Route path="/articles/:article_id" element={<ArticlePage />}></Route>
         <Route path="/articles/:article_id/comments" element={<Comments />} />
-        <Route path="/search" element={<SearchByTopic />} />
+        {/* <Route path="/search" element={<SearchByTopic />} />
         <Route path="/search/:topic" element={<SearchByTopic />} />
-        <Route path="/topics/:slug" element={<TopicPage />} />
+        <Route path="/topics/:slug" element={<TopicPage />} /> */}
         <Route
           path="/profile"
           element={<Profile loadingLottie={loadingLottie} />}

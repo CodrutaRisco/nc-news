@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import { getArticles, getArticleByTopic } from "../../utils/api";
 import "./articles-list.css";
 import Votes from "../votes/votes";
-import capitalizeFirstLetter from "../../utils/capitalize-first-letter";
+// import {capitalizeFirstLetter} from "../../utils/capitalize-first-letter";
 
 // eslint-disable-next-line react/prop-types
 function ArticlesList({ topic }) {
@@ -32,7 +32,7 @@ function ArticlesList({ topic }) {
 
   return (
     <div className="articles-container">
-      <h1>{topic ? capitalizeFirstLetter(topic) : "All News"}</h1>
+      <h1>{topic ? topic : "All News"}</h1>
       <ul className="articles-list">
         {articles.map((article) => (
           <li key={article.article_id} className="article-card">

@@ -4,19 +4,10 @@ const newApi = axios.create({
   baseURL: "https://my-nc-news-pemi.onrender.com/api",
 });
 
-export const getArticles = (
-  topic = "slug",
-  sort_by = "comment_count",
-  order = "DESC"
-) => {
-  return newApi
-    .get("/articles", {
-      params: { topic, sort_by, order },
-    })
-    .then(({ data }) => {
-      return data.articles;
-    })
-    .catch((err) => console.error("API error:", err));
+export const getArticles = () => {
+  return newApi.get("/articles").then(({ data }) => {
+    return data.articles;
+  });
 };
 
 export const getArticleById = (article_id) => {
@@ -51,7 +42,7 @@ export const updateArticlesVotes = (article_id, inc_votes) => {
 
 export const getTopics = () => {
   return newApi.get(`/topics`).then(({ data }) => {
-    return data.topic;
+    return data.topics;
   });
 };
 
@@ -71,4 +62,10 @@ export const postComment = (article_id, body) => {
     .then(({ data }) => {
       return data.comment;
     });
+};
+
+export const getArticleByTopic = (topic) => {
+  return newApi.get(`/articles?topic=${topic}`).then(({ data }) => {
+    return data.articles;
+  });
 };
