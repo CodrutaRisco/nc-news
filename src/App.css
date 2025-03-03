@@ -1,8 +1,8 @@
 #root {
-  max-width: 1280px;
+  max-width: 1024px;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  padding: 6rem 2rem;
+  text-align: center
 } 
 
 .nav-bar{
@@ -19,4 +19,17 @@
 .trending-topics{
   list-style: none;
   display: inline-flex;
+}
+
+/* This code is a minimal "CSS reset" → great for clean and predictable layouts. 🚀 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  text-decoration: none;
+}
+
+body {
+  margin: 0;
 }
