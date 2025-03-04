@@ -4,10 +4,12 @@ const newApi = axios.create({
   baseURL: "https://my-nc-news-pemi.onrender.com/api",
 });
 
-export const getArticles = () => {
-  return newApi.get("/articles").then(({ data }) => {
-    return data.articles;
-  });
+export const getArticles = (sort_by = "created_at", order = "DESC") => {
+  return newApi
+    .get(`/articles?sort_by=${sort_by}order=${order}`)
+    .then(({ data }) => {
+      return data.articles;
+    });
 };
 
 export const getArticleById = (article_id) => {
