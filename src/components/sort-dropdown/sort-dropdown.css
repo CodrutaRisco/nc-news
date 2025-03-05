@@ -1,0 +1,16 @@
+.sort-dropdown {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  
+  }
+  
+  .sort-dropdown select {
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    background: white;
+    cursor: pointer;
+    padding: 11px;
+
+  }

@@ -8,7 +8,7 @@
     box-shadow: 0 2px 5px;
     cursor: pointer;
     max-width: 700px;
-    min-height: 150px; /* Setează o înălțime minimă pentru toate cardurile */
+    min-height: 150px; 
     height: 100%; 
     transition: transform 0.3s ease;
 }
@@ -18,7 +18,7 @@
     flex-direction: column;
     gap: 12px;
     text-align: left;
-    justify-content: space-between; /* Face ca textul să ocupe cât mai mult spațiu */
+    justify-content: space-between; 
     flex-grow: 1;
 }
 

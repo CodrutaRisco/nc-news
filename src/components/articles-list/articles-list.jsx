@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router";
-import { getArticles, getArticleByTopic } from "../../utils/api";
+import { fetchArticles } from "../../utils/api";
 import "./articles-list.css";
 import Votes from "../votes/votes";
 import SearchBar from "../search-bar/search-bar";
-// import {capitalizeFirstLetter} from "../../utils/capitalize-first-letter";
+import SortDropdown from "../sort-dropdown/sort-dropdown";
+import { capitalizeFirstLetter } from "../../utils/capitalize-first-letter";
 
 // eslint-disable-next-line react/prop-types
 function ArticlesList({ topic }) {
@@ -13,18 +14,20 @@ function ArticlesList({ topic }) {
   const [sortOrder, setSortOrder] = useState("DESC");
 
   useEffect(() => {
-    const fetchArticles = async () => {
+    const fetchData = async () => {
       try {
-        const fetchedArticles = topic
-          ? await getArticleByTopic(topic)
-          : await getArticles("created_at", sortOrder);
+        const fetchedArticles = await fetchArticles(
+          topic,
+          "created_at",
+          sortOrder
+        );
         setArticles(fetchedArticles);
       } catch (error) {
         console.error("Error fetching articles:", error);
       }
     };
 
-    fetchArticles();
+    fetchData();
   }, [topic, sortOrder]);
 
   const handleVoteChange = (article_id, inc_votes) => {
@@ -37,18 +40,25 @@ function ArticlesList({ topic }) {
     );
   };
 
-  const filteredArticles = articles.filter((article) =>
-    article.title.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredArticles = articles.filter(
+    (article) =>
+      article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      article.topic.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
     <div className="articles-container">
-      <h1>{topic ? topic : "All News"}</h1>
-      {!topic && (
-        <div className="controls">
-          <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-        </div>
-      )}
+      <section className="articles-header">
+        <h1 className="articleListTitle">
+          {topic ? capitalizeFirstLetter(topic) : "All News"}
+        </h1>
+        {!topic && (
+          <div className="controls">
+            <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+            <SortDropdown sortOrder={sortOrder} setSortOrder={setSortOrder} />
+          </div>
+        )}
+      </section>
       <ul className="articles-list">
         {filteredArticles.map((article) => (
           <li key={article.article_id} className="article-card">
