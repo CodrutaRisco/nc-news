@@ -20,8 +20,8 @@ function SortDropdown({ sortBy, setSortBy, sortOrder, setSortOrder }) {
         value={sortOrder}
         onChange={(e) => setSortOrder(e.target.value)}
       >
-        <option value="DESC">Newest First ↓</option>
-        <option value="ASC">Oldest First ↑</option>
+        <option value="DESC">Descending ▼</option>
+        <option value="ASC">Ascending ▲</option>
       </select>
     </div>
   );
