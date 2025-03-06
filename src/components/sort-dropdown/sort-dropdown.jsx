@@ -1,12 +1,22 @@
 import "./sort-dropdown.css";
 
 // eslint-disable-next-line react/prop-types
-function SortDropdown({ sortOrder, setSortOrder }) {
+function SortDropdown({ sortBy, setSortBy, sortOrder, setSortOrder }) {
   return (
     <div className="sort-dropdown">
-      <label htmlFor="sort">Sort by:</label>
+      <label htmlFor="sortBy">Sort by:</label>
       <select
-        id="sort"
+        id="sortBy"
+        value={sortBy}
+        onChange={(e) => setSortBy(e.target.value)}
+      >
+        <option value="created_at">Date</option>
+        <option value={"comment_count"}>Comments</option>
+        <option value="votes">Votes</option>
+      </select>
+      <label htmlFor="sortOrder">Order:</label>
+      <select
+        id="sortOrder"
         value={sortOrder}
         onChange={(e) => setSortOrder(e.target.value)}
       >
