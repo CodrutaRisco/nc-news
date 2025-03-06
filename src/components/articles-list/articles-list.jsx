@@ -11,24 +11,36 @@ import { capitalizeFirstLetter } from "../../utils/capitalize-first-letter";
 function ArticlesList({ topic }) {
   const [articles, setArticles] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [sortBy, setSortBy] = useState("created_at");
   const [sortOrder, setSortOrder] = useState("DESC");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const fetchSortBy = sortBy === "comment_count" ? "created_at" : sortBy;
         const fetchedArticles = await fetchArticles(
           topic,
-          "created_at",
+          fetchSortBy,
           sortOrder
         );
-        setArticles(fetchedArticles);
+        let sortedArticles = fetchedArticles;
+
+        if (sortBy === "comment_count") {
+          sortedArticles = [...fetchedArticles].sort((a, b) =>
+            sortOrder === "ASC"
+              ? a.comment_count - b.comment_count
+              : b.comment_count - a.comment_count
+          );
+        }
+
+        setArticles(sortedArticles);
       } catch (error) {
         console.error("Error fetching articles:", error);
       }
     };
 
     fetchData();
-  }, [topic, sortOrder]);
+  }, [topic, sortBy, sortOrder]);
 
   const handleVoteChange = (article_id, inc_votes) => {
     setArticles((prevArticles) =>
@@ -49,15 +61,17 @@ function ArticlesList({ topic }) {
   return (
     <div className="articles-container">
       <section className="articles-header">
-        <h1 className="articleListTitle">
-          {topic ? capitalizeFirstLetter(topic) : "All News"}
-        </h1>
-        {!topic && (
-          <div className="controls">
-            <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-            <SortDropdown sortOrder={sortOrder} setSortOrder={setSortOrder} />
-          </div>
-        )}
+        <h1>{topic ? capitalizeFirstLetter(topic) : "All News"}</h1>
+
+        <div className="controls">
+          <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+          <SortDropdown
+            sortBy={sortBy}
+            setSortBy={setSortBy}
+            sortOrder={sortOrder}
+            setSortOrder={setSortOrder}
+          />
+        </div>
       </section>
       <ul className="articles-list">
         {filteredArticles.map((article) => (
