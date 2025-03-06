@@ -4,19 +4,17 @@ import { getTopics } from "../../utils/api";
 import { capitalizeFirstLetter } from "../../utils/capitalize-first-letter";
 import "./nav-bar.css";
 
-
-
 // eslint-disable-next-line react/prop-types
 const Nav = ({ setTopic }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [topics, setTopics] = useState([]);
-  console.log("hei unde pana mea ESTI?>>>>", capitalizeFirstLetter("hello"));
+
   useEffect(() => {
     getTopics().then((topicsFromApi) => {
       setTopics(topicsFromApi);
     });
   }, []);
-console.log("topics>>>>> ", topics);
+
 return (
   <nav className="navbar">
     <div className="nav-container">
