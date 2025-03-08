@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router";
 import { fetchArticles } from "../../utils/api";
 import "./articles-list.css";
-import Votes from "../votes/votes";
 import SearchBar from "../search-bar/search-bar";
 import SortDropdown from "../sort-dropdown/sort-dropdown";
 import { capitalizeFirstLetter } from "../../utils/capitalize-first-letter";
+import ArticleCard from "../article-card/article-card";
 
 // eslint-disable-next-line react/prop-types
 function ArticlesList({ topic }) {
@@ -61,7 +60,9 @@ function ArticlesList({ topic }) {
   return (
     <div className="articles-container">
       <section className="articles-header">
-        <h1>{topic ? capitalizeFirstLetter(topic) : "All News"}</h1>
+        <h1 className="articleListTitle">
+          {topic ? capitalizeFirstLetter(topic) : "All News"}
+        </h1>
 
         <div className="controls">
           <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
@@ -75,40 +76,11 @@ function ArticlesList({ topic }) {
       </section>
       <ul className="articles-list">
         {filteredArticles.map((article) => (
-          <li key={article.article_id} className="article-card">
-            <div className="article-content">
-              <div className="article-image">
-                <Link to={`/articles/${article.article_id}`}>
-                  <img src={article.article_img_url} alt="article" />
-                </Link>
-              </div>
-
-              <div className="article-details">
-                <Link to={`/articles/${article.article_id}`}>
-                  <h2>{article.title}</h2>
-                </Link>
-                <p className="article-tag">{`topic: ${article.topic}`}</p>
-                <div className="article-meta">
-                  <span>
-                    <strong>Author:</strong> {article.author} —{" "}
-                    {article.created_at.substring(0, 10)}
-                  </span>
-                </div>
-                <div className="article-actions">
-                  <Link to={`/articles/${article.article_id}/comments`}>
-                    <button className="comment-button">{`Comments: ${article.comment_count}`}</button>
-                  </Link>
-                  <Votes
-                    vote={article.votes}
-                    article_id={article.article_id}
-                    onVoteChange={(inc_votes) =>
-                      handleVoteChange(article.article_id, inc_votes)
-                    }
-                  />
-                </div>
-              </div>
-            </div>
-          </li>
+          <ArticleCard
+            key={article.article_id}
+            article={article}
+            handleVoteChange={handleVoteChange}
+          />
         ))}
       </ul>
     </div>
