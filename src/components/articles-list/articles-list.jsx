@@ -5,6 +5,7 @@ import SearchBar from "../search-bar/search-bar";
 import SortDropdown from "../sort-dropdown/sort-dropdown";
 import { capitalizeFirstLetter } from "../../utils/capitalize-first-letter";
 import ArticleCard from "../article-card/article-card";
+import NoArticlesFound from "../no-articles-found/no-articles-found";
 
 // eslint-disable-next-line react/prop-types
 function ArticlesList({ topic }) {
@@ -75,13 +76,17 @@ function ArticlesList({ topic }) {
         </div>
       </section>
       <ul className="articles-list">
-        {filteredArticles.map((article) => (
-          <ArticleCard
-            key={article.article_id}
-            article={article}
-            handleVoteChange={handleVoteChange}
-          />
-        ))}
+        {filteredArticles.length > 0
+          ? filteredArticles.map((article) => (
+              <ArticleCard
+                key={article.article_id}
+                article={article}
+                handleVoteChange={handleVoteChange}
+              />
+            ))
+          : searchTerm && (
+              <NoArticlesFound resetSearch={() => setSearchTerm("")} />
+            )}
       </ul>
     </div>
   );
