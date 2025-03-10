@@ -3,7 +3,7 @@ import "./article-card.css";
 import { Link } from "react-router-dom";
 import Votes from "../votes/votes";
 
-function ArticleCard({ article, onVoteChange }) {
+function ArticleCard({ article, handleVoteChange }) {
   return (
     <li key={article.article_id} className="article-card">
       <div className="article-content">
@@ -31,7 +31,9 @@ function ArticleCard({ article, onVoteChange }) {
             <Votes
               vote={article.votes}
               article_id={article.article_id}
-              onVoteChange={onVoteChange}
+              onVoteChange={(inc_votes) =>
+                handleVoteChange(article.article_id, inc_votes)
+              }
             />
           </div>
         </div>
