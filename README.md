@@ -45,7 +45,7 @@ This project was developed as part of the Northcoders Bootcamp to solidify full-
 
 ### Deployment
 
-- **Front End**: TBC
+- **Front End**: Netlify
 - **Back End**: Render, Supabase
 
 ## Installation Guide
@@ -124,7 +124,7 @@ Ensure that API calls in the React app point to the appropriate back-end URL (e.
 
 ### Front End
 
-The application is deployed on [TBC]. Access the live version [TBC]().
+The application is deployed on Netlify. Access the live version [here](https://codruta-nc-news.netlify.app).
 
 ### Back End
 
@@ -142,3 +142,7 @@ The API is hosted on Render. Documentation is available [here](https://github.co
 ### Feedback & Contributions
 
 If you encounter any issues or have suggestions, feel free to open an issue or submit a pull request on GitHub!
+
+---
+
+This portfolio project was created as part of a Digital Skills Bootcamp in Software Engineering provided by [Northcoders](https://northcoders.com/).
