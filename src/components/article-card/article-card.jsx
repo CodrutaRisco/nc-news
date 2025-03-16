@@ -17,7 +17,9 @@ function ArticleCard({ article, handleVoteChange }) {
           <Link to={`/articles/${article.article_id}`}>
             <h2>{article.title}</h2>
           </Link>
-          <p className="article-tag">{`topic: ${article.topic}`}</p>
+          <Link to={`/articles/${article.article_id}`}>
+            <p className="article-tag">{`topic: ${article.topic}`}</p>
+          </Link>
           <div className="article-meta">
             <span>
               <strong>Author:</strong> {article.author} —{" "}
