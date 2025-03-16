@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getUsers } from "../../utils/api";
 import "./Profile.css";
 
+
 // eslint-disable-next-line react/prop-types
 export const Profile = ({ loadingLottie }) => {
   const [users, setUsers] = useState([]);
@@ -24,14 +25,13 @@ export const Profile = ({ loadingLottie }) => {
     <p>Loading... {loadingLottie}</p>;
   }
   if (error) {
-    <p>{error}</p>;
+    return <p>{error}</p>;
   }
 
   if (users.length === 0 || !users[0]) {
     return (
       <>
-        <p>profile loading...</p>
-        {loadingLottie}
+        <p>profile loading... {loadingLottie}</p>
       </>
     );
   }

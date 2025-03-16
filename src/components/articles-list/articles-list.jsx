@@ -8,11 +8,13 @@ import ArticleCard from "../article-card/article-card";
 import NoArticlesFound from "../no-articles-found/no-articles-found";
 
 // eslint-disable-next-line react/prop-types
-function ArticlesList({ topic }) {
+function ArticlesList({ loadingLottie, topic }) {
   const [articles, setArticles] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortBy, setSortBy] = useState("created_at");
   const [sortOrder, setSortOrder] = useState("DESC");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,8 +36,10 @@ function ArticlesList({ topic }) {
         }
 
         setArticles(sortedArticles);
-      } catch (error) {
-        console.error("Error fetching articles:", error);
+        setLoading(false);
+      } catch {
+        setError("Error loading articles");
+        setLoading(false);
       }
     };
 
@@ -51,6 +55,14 @@ function ArticlesList({ topic }) {
       )
     );
   };
+
+  if (loading) {
+    return <p>Loading articles... {loadingLottie}</p>;
+  }
+
+  if (error) {
+    return <p>{error}</p>;
+  }
 
   const filteredArticles = articles.filter(
     (article) =>
