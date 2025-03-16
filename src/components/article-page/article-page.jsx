@@ -54,7 +54,9 @@ function ArticlePage() {
           </div>
           <hr aria-orientation="horizontal" className="divider"></hr>
           <div className="articleContent">
-            <p className="tagText">Topic: {article.topic}</p>
+            <Link to="/">
+              <p className="tagText">Topic: {article.topic}</p>
+            </Link>
             <h1>{article.title}</h1>
             <p>
               <strong>Author:</strong> {article.author}
